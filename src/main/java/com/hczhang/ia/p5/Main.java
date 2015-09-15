@@ -5,7 +5,10 @@ import com.hczhang.ia.p4.Dish;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.IntSupplier;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -45,6 +48,33 @@ public class Main {
                 .findAny();
 
         dish.ifPresent(d -> System.out.println(d.getName()));
+
+        Stream<String> stream = Stream.of("Java 8 ", "Lambdas ", "In ", "Action");
+        stream.map(String::toUpperCase).forEach(System.out::println);
+
+        Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .limit(10)
+                .map(t -> t[0])
+                .forEach(System.out::println);
+
+        IntStream ones = IntStream.generate(() -> 1);
+
+
+        IntSupplier fib = new IntSupplier() {
+            private int previous = 0;
+            private int current = 1;
+
+            @Override
+            public int getAsInt() {
+                int old = this.previous;
+                int next = this.previous + this.current;
+                this.previous = this.current;
+                this.current = next;
+                return old;
+            }
+        };
+
+        IntStream.generate(fib).limit(10).forEach(System.out::println);
 
 
     }
