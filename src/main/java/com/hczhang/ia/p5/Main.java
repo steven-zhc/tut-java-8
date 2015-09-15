@@ -44,6 +44,8 @@ public class Main {
                 .filter(Dish::isVegetarian)
                 .findAny();
 
+        dish.ifPresent(d -> System.out.println(d.getName()));
+
 
     }
 }
