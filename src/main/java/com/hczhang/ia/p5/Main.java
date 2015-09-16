@@ -1,6 +1,7 @@
 package com.hczhang.ia.p5;
 
 import com.hczhang.ia.p4.Dish;
+import com.hczhang.ia.p4.Type;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Main {
 
         List<Dish> dishes = Dish.menu
                 .stream()
-                .filter(dish -> dish.getType() == Dish.Type.MEAT)
+                .filter(dish -> dish.getType() == Type.MEAT)
                 .limit(3)
                 .collect(Collectors.toList());
 
